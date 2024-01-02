@@ -1,26 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { CreateScenarioDto } from './dto/create-scenario.dto';
 import { UpdateScenarioDto } from './dto/update-scenario.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { BaseService } from 'src/base/base.service';
+import { IdPrefix } from 'src/utils';
+import { Repository } from 'typeorm';
+import { Scenario } from './entities/scenario.entity';
 
 @Injectable()
-export class ScenariosService {
-  create(createScenarioDto: CreateScenarioDto) {
-    return 'This action adds a new scenario';
-  }
-
-  findAll() {
-    return `This action returns all scenarios`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} scenario`;
-  }
-
-  update(id: number, updateScenarioDto: UpdateScenarioDto) {
-    return `This action updates a #${id} scenario`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} scenario`;
+export class ScenariosService extends BaseService<
+  Scenario,
+  CreateScenarioDto,
+  UpdateScenarioDto
+> {
+  constructor(
+    @InjectRepository(Scenario)
+    private readonly scenarioRepository: Repository<Scenario>,
+  ) {
+    super(scenarioRepository, IdPrefix.SCENARIO);
   }
 }

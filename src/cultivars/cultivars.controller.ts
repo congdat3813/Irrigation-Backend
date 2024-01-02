@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CultivarsService } from './cultivars.service';
 import { CreateCultivarDto } from './dto/create-cultivar.dto';
 import { UpdateCultivarDto } from './dto/update-cultivar.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Cultivars Management')
 @Controller('cultivars')
 export class CultivarsController {
   constructor(private readonly cultivarsService: CultivarsService) {}
@@ -19,16 +29,19 @@ export class CultivarsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cultivarsService.findOne(+id);
+    return this.cultivarsService.findSingleBy(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCultivarDto: UpdateCultivarDto) {
-    return this.cultivarsService.update(+id, updateCultivarDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateCultivarDto: UpdateCultivarDto,
+  ) {
+    return this.cultivarsService.update(id, updateCultivarDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.cultivarsService.remove(+id);
+    return this.cultivarsService.deleteById(id);
   }
 }

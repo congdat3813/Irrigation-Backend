@@ -6,10 +6,10 @@ export class News extends BaseEntityClass {
   @Column('text')
   title: string;
 
-  @Column('text')
+  @Column('text', { nullable: true })
   image: string;
 
-  @Column('text')
+  @Column('text', { nullable: true })
   link: string;
 
   @Column('text')

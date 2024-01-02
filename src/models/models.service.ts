@@ -1,26 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { CreateModelDto } from './dto/create-model.dto';
 import { UpdateModelDto } from './dto/update-model.dto';
+import { BaseService } from 'src/base/base.service';
+import { Model } from './entities/model.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { IdPrefix } from 'src/utils';
 
 @Injectable()
-export class ModelsService {
-  create(createModelDto: CreateModelDto) {
-    return 'This action adds a new model';
-  }
-
-  findAll() {
-    return `This action returns all models`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} model`;
-  }
-
-  update(id: number, updateModelDto: UpdateModelDto) {
-    return `This action updates a #${id} model`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} model`;
+export class ModelsService extends BaseService<
+  Model,
+  CreateModelDto,
+  UpdateModelDto
+> {
+  constructor(
+    @InjectRepository(Model)
+    private readonly modelRepository: Repository<Model>,
+  ) {
+    super(modelRepository, IdPrefix.MODEL);
   }
 }

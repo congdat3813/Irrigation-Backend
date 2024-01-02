@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { FarmsService } from './farms.service';
 import { CreateFarmDto } from './dto/create-farm.dto';
 import { UpdateFarmDto } from './dto/update-farm.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Farms Management')
 @Controller('farms')
 export class FarmsController {
   constructor(private readonly farmsService: FarmsService) {}
@@ -19,16 +29,16 @@ export class FarmsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.farmsService.findOne(+id);
+    return this.farmsService.findSingleBy(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateFarmDto: UpdateFarmDto) {
-    return this.farmsService.update(+id, updateFarmDto);
+    return this.farmsService.update(id, updateFarmDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.farmsService.remove(+id);
+    return this.farmsService.deleteById(id);
   }
 }

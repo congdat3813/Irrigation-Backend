@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  smart-irrigation-backend:
+    image: hpccbk/smart-irrigation-backend:latest
+    networks:
+      - confluent
+    ports:
+      - '${PORT}:3003'
+    environment:
+      - SQL_HOST=${SQL_HOST}
+      - SQL_PORT=${SQL_PORT}
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.labels.ENV == ${ENV}
+
+networks:
+  confluent:
+    external:
+      name: ${NETWORK}

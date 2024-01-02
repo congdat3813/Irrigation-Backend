@@ -3,9 +3,11 @@ import { User } from 'src/users/entities/user.entity';
 export enum IdPrefix {
   USER = 'user',
   REQUEST = 'request',
-  DATA_SOURCE = 'source',
-  DATA_CATEGORY = 'category',
-  SCHEMA = 'schema',
+  FARM = 'farm',
+  CULTIVAR = 'cultivar',
+  NEWS = 'news',
+  MODEL = 'models',
+  SCENARIO = 'scenario',
 }
 
 export function omitUserPassword(user: User): User {
