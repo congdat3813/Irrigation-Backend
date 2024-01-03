@@ -29,7 +29,7 @@ export class ScenariosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.scenariosService.findSingleBy(id);
+    return this.scenariosService.findById(id);
   }
 
   @Patch(':id')

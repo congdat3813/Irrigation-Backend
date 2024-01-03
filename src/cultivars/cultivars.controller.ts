@@ -29,7 +29,7 @@ export class CultivarsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cultivarsService.findSingleBy(id);
+    return this.cultivarsService.findById(id);
   }
 
   @Patch(':id')

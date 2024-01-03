@@ -29,7 +29,7 @@ export class FarmsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.farmsService.findSingleBy(id);
+    return this.farmsService.findById(id);
   }
 
   @Patch(':id')

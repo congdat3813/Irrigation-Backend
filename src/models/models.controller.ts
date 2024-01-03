@@ -29,7 +29,7 @@ export class ModelsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.modelsService.findSingleBy(id);
+    return this.modelsService.findById(id);
   }
 
   @Patch(':id')

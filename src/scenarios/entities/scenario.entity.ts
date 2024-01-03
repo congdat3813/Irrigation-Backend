@@ -1,8 +1,9 @@
 import { BaseEntityClass } from 'src/base/base.entity';
 import { Farm } from 'src/farms/entities/farm.entity';
 import { Model } from 'src/models/entities/model.entity';
-import { Column, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
+@Entity()
 export class Scenario extends BaseEntityClass {
   @Column('text', { nullable: true })
   name: string;

@@ -29,7 +29,7 @@ export class NewsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.newsService.findSingleBy(id);
+    return this.newsService.findById(id);
   }
 
   @Patch(':id')
